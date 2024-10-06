@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold mb-4">My Skills</h1>
+    <h1 class="text-4xl font-bold mb-4">{{$t('Skills')}}</h1>
     <div class="grid grid-cols-4 gap-4">
-      <Card v-for="(skill, index) in skills" :key="index" class="bg-[#302b63] pt-4" >
+      <Card v-for="(skill, index) in skills" :key="index" class="bg-frost-gradient-2 pt-4" >
         <template #header>
           <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" />
         </template>

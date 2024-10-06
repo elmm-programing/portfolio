@@ -10,14 +10,14 @@
       </template>
       <template #item="{ item, props, hasSubmenu, root }">
 
-        <a v-ripple class="flex items-center hover:bg-[#302b63] active:bg-[#302b63] focus:bg-[#302b63]" v-bind="props.action">
+        <a v-ripple class="flex items-center hover:bg-frost-gradient-2 active:bg-frost-gradient-2 focus:bg-frost-gradient-2" v-bind="props.action">
           <span class="mx-2">{{ $t(item.label) }}</span>
         </a>
       </template>
       <template #end>
         <div class="flex items-center gap-2 w-[10px]">
-          <Select @change="handleSelectChange" v-model="selectedLang" :options="langs" dropdownIcon="pi  pi-language"
-            :pt="{ label: { class: 'hidden' }, root: { class: 'bg-transparent h-[2rem]' } }" class="w-full md:w-56">
+          <Select @change="handleSelectChange" v-model="selectedLang" :options="langs" dropdownIcon="pi  pi-language "
+            :pt="{ label: { class: 'hidden' }, root: { class: 'bg-transparent h-[2rem] border-white ' },dropdown:{style:'color: white'},option:{class:' hover:bg-frost-gradient-2 active:bg-frost-gradient-2 focus:bg-frost-gradient-2'} }" class="w-full md:w-56">
             <template #option="slotProps">
               <div class="flex items-center">
                 <div>{{ $t(slotProps.option.name) }}</div>
