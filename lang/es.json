@@ -2,10 +2,15 @@
   "welcome": "Bienvenido",
   "Spanish": "Español",
   "English": "Inglés",
-  "Home":"Inicio",
-  "Projects":"Proyectos",
-  "Skills":"Habilidades",
-  "Contact":"Contacto"
-
-
+  "Home": "Inicio",
+  "Projects": "Proyectos",
+  "Skills": "Habilidades",
+  "Contact": "Contacto",
+  "Work Experience": "Experiencia Laboral",
+  "August 2022": "Agosto 2022",
+  "At the moment...": "Actualmente...",
+  "Ministry of Finance of the Dominican Republic": "Ministerio de Hacienda de la República Dominicana",
+  "+2 years of experience. Full Stack Developer from the Dominican Republic. Specialized in the development of web applications and with knowledge of backend, system design, software architecture and Data structures": "+2 años de experiencia. Desarrollador Full Stack de la República Dominicana. Especializado en el desarrollo de aplicaciones web y con conocimientos de backend, diseño de sistemas, arquitectura de software y estructuras de datos",
+  "Full Stack Developer": "Desarrollador Full Stack",
+  "Intern": "Pasante"
 }
