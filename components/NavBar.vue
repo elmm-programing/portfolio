@@ -66,13 +66,14 @@ const items = ref([
     label: 'Home',
     command: () => scrollToSection('home')
   },
-  {
-    label: 'Projects',
-    command: () => scrollToSection('projects')
-  },
+  
   {
     label: 'Skills',
     command: () => scrollToSection('skills')
+  },
+  {
+    label: 'Projects',
+    command: () => scrollToSection('projects')
   },
   {
     label: 'Experience',

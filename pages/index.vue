@@ -3,6 +3,7 @@
     <NavBar  />
     <Introduction  />
     <Skills  />
+    <Projects />
     <Experience  />
   </div>
 </template>
