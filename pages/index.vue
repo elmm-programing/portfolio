@@ -1,10 +1,10 @@
 <template>
   <div class="bg-frost-gradient ">
-    <NavBar  />
-    <Introduction  />
-    <Skills  />
+    <NavBar />
+    <Introduction />
+    <Experience />
+    <Skills />
     <Projects />
-    <Experience  />
   </div>
 </template>
 
