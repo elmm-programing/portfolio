@@ -1,7 +1,21 @@
 <template>
   <div class="container mx-auto p-4" id="skills">
     <h1 class="text-4xl font-bold mb-4">{{ $t('Skills') }}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <Carousel :value="skills" :numVisible="1" :numScroll="1" class="md:hidden">
+      <template #item="{ data: skill }">
+        <Card class="bg-frost-gradient-2  pt-4">
+          <template #header>
+            <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" />
+          </template>
+          <template #content>
+            <h3 class="text-center">{{ skill.name }}</h3>
+          </template>
+        </Card>
+      </template>
+    </Carousel>
+
+
+    <div class=" grid-cols-1 md:grid-cols-4 gap-4 hidden md:grid   ">
       <Card v-for="(skill, index) in skills" :key="index" class="bg-frost-gradient-2 pt-4">
         <template #header>
           <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" />
