@@ -4,6 +4,7 @@
     <Introduction />
     <Experience />
     <Skills />
+    <Cert />
     <Projects />
   </div>
 </template>

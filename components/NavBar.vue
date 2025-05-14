@@ -32,6 +32,7 @@ function scrollToSection(sectionId: string) {
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     window.scrollTo({
       top: sectionTop - offset,
+      left: 0,
       behavior: 'smooth',
     });
   }
@@ -49,6 +50,11 @@ const items = ref([
     label: 'Skills',
     command: () => scrollToSection('skills')
   },
+  {
+    label: 'Certification',
+    command: () => scrollToSection('certification')
+  },
+
   {
     label: 'GitHub Repos',
     command: () => scrollToSection('projects')
