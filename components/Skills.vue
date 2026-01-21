@@ -1,60 +1,61 @@
 <template>
-  <div class="container mx-auto p-4" id="skills">
-    <h1 class="text-4xl font-bold mb-4">{{ $t('Skills') }}</h1>
-    <Carousel :value="skills" :numVisible="1" :numScroll="1" class="md:hidden">
-      <template #item="{ data: skill }">
-        <Card class="bg-frost-gradient-2  pt-4">
-          <template #header>
-            <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" />
-          </template>
-          <template #content>
-            <h3 class="text-center">{{ skill.name }}</h3>
-          </template>
-        </Card>
-      </template>
-    </Carousel>
+  <section class="py-20 bg-white dark:bg-surface-dark border-y border-gray-100 dark:border-gray-800 relative z-10" id="skills">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold tracking-tight dark:text-white flex items-center gap-3">
+          <span class="w-2 h-8 bg-primary rounded-full"></span>
+          Habilidades Técnicas
+        </h2>
+      </div>
 
+      <div v-if="pending" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-for="i in 3" :key="i" class="bg-gray-50 dark:bg-surface-darker/50 rounded-xl p-8 border border-gray-100 dark:border-gray-800 animate-pulse">
+          <div class="h-10 w-10 bg-gray-200 dark:bg-gray-700 rounded-lg mb-6"></div>
+          <div class="h-6 w-32 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+          <div class="grid grid-cols-2 gap-4">
+            <div v-for="j in 6" :key="j" class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20"></div>
+          </div>
+        </div>
+      </div>
 
-    <div class=" grid-cols-1 md:grid-cols-4 gap-4 hidden md:grid   ">
-      <Card v-for="(skill, index) in skills" :key="index" class="bg-frost-gradient-2 pt-4">
-        <template #header>
-          <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" />
-        </template>
-        <template #content>
-          <h3 class="text-center">{{ skill.name }}</h3>
-        </template>
-      </Card>
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div v-for="category in skills" :key="category.name" 
+             class="bg-gray-50 dark:bg-surface-darker/50 rounded-xl p-8 border border-gray-100 dark:border-gray-800 h-full">
+          <div class="flex items-center gap-3 mb-6">
+            <div :class="[getCategoryColor(category.name).bg, getCategoryColor(category.name).text, 'w-10 h-10 rounded-lg flex items-center justify-center']">
+              <i :class="['pi', getCategoryIcon(category.name)]"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ category.name }}</h3>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div v-for="item in category.items" :key="item" class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>{{ item }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-const skills = [
-  { name: 'JavaScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'TypeScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-  { name: 'Vue.js', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
-  { name: 'React', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Tailwind CSS', image: 'https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/tailwindcss.svg' },
-  { name: 'Nuxt', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg' },
-  { name: 'Next.js', image: 'https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/next-dot-js.svg' },
-  { name: 'HTML', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-  { name: 'CSS', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  { name: 'Neovim', image: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Neovim-mark.svg' },
-  { name: 'Golang', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
-  { name: 'Docker', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-  { name: 'Database Management', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  { name: 'Git', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-  { name: 'Pinia', image: 'https://pinia.vuejs.org/logo.svg' },
-  { name: 'Linux', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-  { name: 'Postman', image: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg' },
-  { name: 'SQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  { name: 'PostgreSQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
-  { name: 'AWS', image: 'https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg' },
-  { name: 'SQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  { name: 'MongoDB', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-  { name: 'Java', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-  { name: 'Spring Boot', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
-  { name: 'Quarkus', image: 'https://design.jboss.org/quarkus/logo/final/SVG/quarkus_icon_rgb_default.svg' }
-];
+const { data: skills, pending } = useFetch('/api/skills');
 
+const getCategoryIcon = (name: string) => {
+  const icons: Record<string, string> = {
+    'Frontend': 'pi-desktop',
+    'Backend': 'pi-server',
+    'Databases / DevOps': 'pi-cloud'
+  };
+  return icons[name] || 'pi-code';
+};
+
+const getCategoryColor = (name: string) => {
+  const colors: Record<string, { bg: string, text: string }> = {
+    'Frontend': { bg: 'bg-blue-500/10', text: 'text-primary' },
+    'Backend': { bg: 'bg-green-500/10', text: 'text-green-500' },
+    'Databases / DevOps': { bg: 'bg-purple-500/10', text: 'text-purple-500' }
+  };
+  return colors[name] || { bg: 'bg-gray-500/10', text: 'text-gray-500' };
+};
 </script>

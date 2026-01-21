@@ -1,87 +1,45 @@
 <template>
-  <div class="container mx-auto p-4" id="certification">
-    <h1 class="text-4xl font-bold mb-4">{{ 'Certifications' }}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-1     ">
-      <Card v-for="(cert, index) in certifications" :key="index" class="bg-frost-gradient-2 mt-4">
-        <template #content>
-          <div class="flex flex-col justify-center">
-            <h1 class="text-center text-2xl">{{ cert.title }}</h1>
-            <h1 class="text-center text-xl">{{ cert.company }}</h1>
-            <h1 class="text-center">Expedition: {{ cert.issueDate }}</h1>
-            <h1 class="text-center">Skills:[{{ cert.skills.toString() }}]</h1>
-            <Button type="button" class="mt-5  text-white border-white" raised outlined as="a"
-              :href="cert['certificateUrl']" target="_blank" rel="noopener" label="Certificate Url"
-              icon="pi pi-external-link" />
-          </div>
+  <section class="py-20 bg-background-light dark:bg-background-dark relative z-10" id="certifications">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold tracking-tight dark:text-white flex items-center gap-3">
+          <span class="w-2 h-8 bg-purple-600 rounded-full"></span>
+          Certificaciones y Logros
+        </h2>
+      </div>
 
-        </template>
-      </Card>
+      <div v-if="pending" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="i in 3" :key="i" class="bg-white dark:bg-surface-dark rounded-xl p-8 border border-gray-100 dark:border-gray-800 animate-pulse">
+          <div class="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-800 mb-6 mx-auto"></div>
+          <div class="h-6 w-3/4 bg-gray-200 dark:bg-gray-800 rounded mb-4 mx-auto"></div>
+          <div class="h-4 w-full bg-gray-200 dark:bg-gray-800 rounded mb-4"></div>
+          <div class="h-8 w-24 bg-gray-200 dark:bg-gray-800 rounded-full mx-auto"></div>
+        </div>
+      </div>
+
+      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <article v-for="cert in certifications" :key="cert.name"
+          class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-all hover:shadow-lg h-full flex flex-col items-center text-center group">
+          <div class="w-20 h-20 rounded-full bg-purple-600/10 text-purple-600 dark:text-purple-500 flex items-center justify-center mb-6 group-hover:bg-purple-600/20 transition-colors shadow-sm">
+            <i class="pi pi-verified text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white text-lg mb-2">{{ cert.name }}</h4>
+          <p class="text-text-secondary text-sm mb-6">{{ cert.achievement }}</p>
+          
+          <div class="mt-auto flex flex-col items-center gap-4">
+            <span class="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold text-text-secondary rounded-full">{{ cert.provider }}</span>
+            <a v-if="cert.url" :href="cert.url" target="_blank" 
+               class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1 group/link">
+              Ver Certificado
+              <i class="pi pi-external-link text-xs group-hover/link:translate-x-0.5 transition-transform"></i>
+            </a>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-const certifications = ref([
-  {
-    certificateUrl: 'https://www.hackerrank.com/certificates/1c375d187eeb',
-    title: 'JavaScript (Basic) Certificate',
-    company: 'HackerRank',
-    issueDate: 'may. 2024',
-    credentialId: '1c375d187eeb',
-    skills: ['JavaScript'],
-  },
-  {
-    certificateUrl: 'https://www.hackerrank.com/certificates/a00313f5e469', // Placeholder URL
-    title: 'JavaScript (Intermediate) Certificate',
-    company: 'HackerRank',
-    issueDate: 'may. 2024',
-    credentialId: 'a00313f5e469',
-    skills: ['JavaScript'],
-  },
-  {
-    certificateUrl: 'https://www.linkedin.com/in/edwin-levinson-mej%C3%ADa-marcelino-738746201/details/certifications/1714874786257/single-media-viewer?type=DOCUMENT&profileId=ACoAADOLlJwBmA5l5Y_dZv5lelB-GrxfOFlyIZk', // Placeholder URL
-    title: 'Master the Coding Interview: Data Structures + Algorithms',
-    company: 'Zero To Mastery Academy',
-    issueDate: 'abr. 2024',
-    skills: ['Estructuras de datos', 'Algoritmos', 'Design Patterns'],
-  },
-  {
-    certificateUrl: 'https://www.linkedin.com/in/edwin-levinson-mej%C3%ADa-marcelino-738746201/details/certifications/1714874945912/single-media-viewer?type=DOCUMENT&profileId=ACoAADOLlJwBmA5l5Y_dZv5lelB-GrxfOFlyIZk', // Placeholder URL
-    title: "Go Programming (Golang): The Complete Developer's Guide",
-    company: 'Zero To Mastery Academy',
-    issueDate: 'ene. 2024',
-    skills: ['Golang', 'Go'],
-  },
-  {
-    certificateUrl: 'https://www.linkedin.com/in/edwin-levinson-mej%C3%ADa-marcelino-738746201/details/certifications/1714875111990/single-media-viewer?type=DOCUMENT&profileId=ACoAADOLlJwBmA5l5Y_dZv5lelB-GrxfOFlyIZk', // Placeholder URL
-    title: 'Master the Coding Interview: System Design + Architecture',
-    company: 'Zero To Mastery Academy',
-    issueDate: 'dic. 2023',
-    skills: ['Integration Testing', 'Diseño de sistemas', 'Design Patterns', 'Arquitectura de software'],
-  },
-  {
-    certificateUrl: 'https://www.hackerrank.com/certificates/2edf56ac37eb',
-    title: 'Go (Basic) Certificate',
-    company: 'HackerRank',
-    issueDate: 'jun. 2023',
-    credentialId: '2edf56ac37eb',
-    skills: ['Go'],
-  },
-  {
-    certificateUrl: 'https://www.hackerrank.com/certificates/78039edd80fd',
-    title: 'SQL (Intermediate) Certificate',
-    company: 'HackerRank',
-    issueDate: 'sept. 2022',
-    credentialId: '78039edd80fd',
-    skills: ['PostgreSQL', 'SQL'],
-  },
-  {
-    certificateUrl: 'https://www.hackerrank.com/certificates/763bf8e777dd',
-    title: 'SQL (Basic) Certificate',
-    company: 'HackerRank',
-    issueDate: 'ago. 2022',
-    credentialId: '763bf8e777dd',
-    skills: ['PostgreSQL', 'SQL'],
-  },
-]);
+const { data: certifications, pending } = useFetch('/api/certifications');
 </script>

@@ -1,43 +1,88 @@
 <template>
-  <div class="container mx-auto p-4" id="projects">
-    <h1 class="text-4xl font-bold mb-4">{{ 'GitHub Repos' }}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <Card v-for="(repo, index) in repos" :key="index" class="bg-frost-gradient-2 pt-4">
-        <template #header>
-          <!-- <img :src="skill.image" :alt="skill.name" width="50" height="50" class="mx-auto" /> -->
-        </template>
-        <template #content>
-          <div class=" flex flex-col mx-auto">
-            <h3 class="text-center md:text-xl"> {{ repo['name'] }}</h3>
-            <Button type="button" class="mt-5  text-white border-white" raised outlined as="a" :href="repo['html_url']"
-              target="_blank" rel="noopener" label="Github" icon="pi pi-github" />
+  <section class="py-20 bg-gray-50 dark:bg-surface-darker/50" id="work">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold tracking-tight dark:text-white flex items-center gap-3">
+          <span class="w-2 h-8 bg-primary rounded-full"></span>
+          Casos de Estudio Seleccionados
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl">
+          Profundizando en los desafíos técnicos y el impacto estratégico de cada proyecto.
+        </p>
+      </div>
 
-
+      <div v-if="pending" class="space-y-12">
+        <div v-for="i in 2" :key="i" class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 animate-pulse">
+          <div class="flex flex-col lg:flex-row h-[400px]">
+            <div class="lg:w-2/5 h-full bg-gray-200 dark:bg-gray-800"></div>
+            <div class="lg:w-3/5 p-10 flex flex-col justify-center space-y-4">
+              <div class="flex gap-2"><div class="h-6 w-16 bg-gray-200 dark:bg-gray-800 rounded-full"></div></div>
+              <div class="h-8 w-64 bg-gray-200 dark:bg-gray-800 rounded"></div>
+              <div class="h-4 w-full bg-gray-200 dark:bg-gray-800 rounded"></div>
+              <div class="grid grid-cols-3 gap-6 pt-6">
+                <div v-for="j in 3" :key="j" class="h-20 bg-gray-200 dark:bg-gray-800 rounded"></div>
+              </div>
+            </div>
           </div>
-        </template>
-      </Card>
+        </div>
+      </div>
+
+      <div v-else class="space-y-12">
+        <article v-for="project in projects" :key="project.title"
+          class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 hover:border-primary/50 transition-colors group">
+          <div class="flex flex-col lg:flex-row h-full">
+            <div class="lg:w-2/5 h-64 lg:h-auto bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
+              <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                :style="{ backgroundImage: `url('${project.image}')` }">
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent lg:bg-gradient-to-r">
+                </div>
+              </div>
+            </div>
+            <div class="lg:w-3/5 p-8 lg:p-10 flex flex-col justify-center">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span v-for="tag in project.tags" :key="tag"
+                  class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wide uppercase">{{ tag }}</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ project.title }}</h3>
+              <p class="text-text-secondary mb-8">{{ project.description }}</p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-1">
+                    <i class="pi pi-exclamation-triangle text-base text-red-400"></i> El Desafío
+                  </h4>
+                  <p class="text-sm text-text-secondary leading-relaxed">{{ project.challenge }}</p>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-1">
+                    <i class="pi pi-lightbulb text-base text-blue-400"></i> La Solución
+                  </h4>
+                  <p class="text-sm text-text-secondary leading-relaxed">{{ project.solution }}</p>
+                </div>
+                <div class="relative pl-4 md:border-l border-gray-700">
+                  <div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500 rounded-full md:hidden"></div>
+                  <h4 class="text-sm font-semibold text-green-500 mb-1 flex items-center gap-1">
+                    <i class="pi pi-chart-line text-base"></i> El Impacto
+                  </h4>
+                  <p class="text-sm text-text-secondary leading-relaxed font-medium">{{ project.impact }}</p>
+                </div>
+              </div>
+              
+              <div class="mt-auto">
+                <button
+                  class="inline-flex items-center text-sm font-bold text-primary hover:text-primary-hover transition-colors group/btn">
+                  Leer análisis completo
+                  <i class="pi pi-arrow-right text-lg ml-1 group-hover/btn:translate-x-1 transition-transform"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-
-import type { GithubRepo } from "../types/GithubRepo";
-const { data: repos } = useFetch<GithubRepo[]>(`https://api.github.com/users/elmm-programing/repos`)
-
-
-
+const { data: projects, pending } = useFetch('/api/projects');
 </script>
-<!-- <template> -->
-<!--  <div id="projects"> -->
-<!--       <div class="container mx-auto p-4 my-[8rem]"> -->
-<!--       <h1 class="text-4xl font-bold mb-[1rem]">{{$t('Projects')}}</h1> -->
-<!--      <p>{{ $t('+2 years of experience. Full Stack Developer from the Dominican Republic. Specialized in the development of web applications and with knowledge of backend, system design, software architecture and Data structures') }}</p> -->
-<!--  <Button type="button" class="mt-5 text-white border-white"  raised outlined as="a" href="https://www.linkedin.com/in/edwin-levinson-mej%C3%ADa-marcelino-738746201/" target="_blank" rel="noopener"  label="Linkedin" icon="pi pi-linkedin"  /> -->
-<!--  <Button type="button" class="mt-5 mx-3 text-white border-white"  raised outlined as="a" href="https://github.com/elmm-programing" target="_blank" rel="noopener"  label="Github" icon="pi pi-github"  /> -->
-<!--       </div> -->
-<!---->
-<!--     </div>  -->
-<!-- </template> -->
-<!-- <script setup lang="ts"> -->
-<!-- </script> -->
