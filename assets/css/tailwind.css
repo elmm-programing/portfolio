@@ -9,8 +9,16 @@
   @tailwind utilities;
 }
 
-*{
-    font-family: 'Onest', sans-serif;
+* {
+  font-family: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
+.glass-nav {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}

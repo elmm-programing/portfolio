@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@notionhq/client':
+        specifier: ^5.7.0
+        version: 5.7.0
       '@nuxtjs/google-fonts':
         specifier: ^3.2.0
         version: 3.2.0(magicast@0.3.5)(rollup@4.24.0)
@@ -774,6 +777,10 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@notionhq/client@5.7.0':
+    resolution: {integrity: sha512-On/GI10lJRLSrzU3h/cDl1Oe15qywYrEvyV3KlE4UgtzqMjlPzXG31B7zHjGc/tTgoY8eD3JS4CWlcD64NBmaQ==}
+    engines: {node: '>=18'}
 
   '@nuxt/devalue@2.0.2':
     resolution: {integrity: sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==}
@@ -4294,6 +4301,8 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@notionhq/client@5.7.0': {}
 
   '@nuxt/devalue@2.0.2': {}
 

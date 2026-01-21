@@ -1,6 +1,16 @@
 import Aura from '@primevue/themes/aura';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      htmlAttrs: {
+        class: 'dark'
+      },
+      link: [
+        // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap' }
+      ]
+    }
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: false,
@@ -22,7 +32,7 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Onest: true // Loads the Onest font family
+      Inter: [300, 400, 500, 600, 700, 800, 900]
     }
   },
   i18n: {
