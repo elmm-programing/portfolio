@@ -1,30 +1,15 @@
 <template>
-  <div class="bg-frost-gradient ">
+  <div class="antialiased">
     <NavBar />
     <Introduction />
-    <Experience />
+    <Projects />
     <Skills />
     <Cert />
-    <Projects />
+    <About />
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-
-
+// Main assembling page
 </script>
-<style scoped>
-@media screen and (max-width: 960px) {
-  .customized-timeline .p-timeline-event:nth-child(even) {
-    flex-direction: row;
-  }
-
-  .customized-timeline .p-timeline-event:nth-child(even) .p-timeline-event-content {
-    text-align: left;
-  }
-
-  .customized-timeline .p-timeline-event-opposite {
-    flex: 0;
-  }
-}
-</style>
